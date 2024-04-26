@@ -1,6 +1,6 @@
 import nicoretteLogo from '/nicorette-logo.png'
 import { styled } from 'styled-components'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IntroPage } from './pages/IntroPage'
 import { CalcPage } from './pages/CalcPage'
 import { ResultPage } from './pages/ResultPage'
@@ -8,15 +8,25 @@ import { FinalPage } from './pages/FinalPage'
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('intro-page')
-  const cigarettesNumbers = useRef('100')
+
+  const cigarettesNumbers = useRef()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  })
 
   const MainContainer = styled.div`
     display: flex;
     flex-direction: column;
+    overflow-y: hidden;
+    align-items: center;
+    position: absolute; 
+    top: 0;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     height: 100dvh;
+    width: calc(100% - 40px);
     background-color: #2f6953;
     color: #fff;
     text-align: center;
